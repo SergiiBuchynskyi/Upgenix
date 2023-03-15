@@ -7,11 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
 
-    public void UpgenixLoginPage(){
-        PageFactory.initElements(Driver.getDriver(),this);
+    public void UpgenixLoginPage() {
+        PageFactory.initElements(Driver.getDriver(), this);
     }
-
-
 
 
     @FindBy(xpath = "//*[@id='login']")
@@ -21,7 +19,13 @@ public class BasePage {
     public WebElement passwordFormControl;
 
     @FindBy(xpath = "//button[@type=\"submit\"]")
-    public WebElement log;
+    public WebElement login;
+
+    @FindBy(xpath = "//p")
+    public WebElement alertMessage;
+
+    @FindBy(xpath = "//span[@class='oe_topbar_name']")
+    public WebElement userButton;
 
 
 }
