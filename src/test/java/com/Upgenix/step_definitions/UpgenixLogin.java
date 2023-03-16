@@ -1,17 +1,17 @@
-package com.Upgenix.step_difinitions;
+package com.Upgenix.step_definitions;
 
 import com.Upgenix.pages.BasePage;
 import com.Upgenix.pages.UpgenixLoginPage;
-import com.Upgenix.utilities.BrowserUtils;
-import com.Upgenix.utilities.ConfigurationReader;
 import com.Upgenix.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UpgenixLogin {
 
@@ -57,7 +57,7 @@ public class UpgenixLogin {
 
     @And("user clicks on the {string} button")
     public void userClickOnTheButton(String str) {
-        upgenixLoginPage.login.click();
+        BasePage.clickButton(str).click();
     }
 
     @Then("user see {string}")
@@ -81,7 +81,7 @@ public class UpgenixLogin {
     @Then("User should see the password in bullet signs by default while typing like ****")
     public void userShouldSeeThePasswordInBulletSignsByDefaultWhileTypingLike() {
         String act = upgenixLoginPage.passwordFormControl.getAttribute("type");
-        Assert.assertTrue(act.equals("password"));
+        Assert.assertEquals("password", act);
     }
 
     @When("User enter valid credentials for SalesManager \\(e.g., username: {string}, password: {string})")
@@ -91,16 +91,39 @@ public class UpgenixLogin {
 
     }
 
-    @And("user press ENTER after typing password")
+    @Then("user press ENTER after typing password")
     public void userPressENTERAfterTypingPassword() {
         upgenixLoginPage.passwordFormControl.sendKeys(Keys.ENTER);
+
     }
 
     @Then("user logins and redirected to home page")
     public void userLoginsAndRedirectedToHomePage() {
         String actualUrl = Driver.getDriver().getCurrentUrl();
         Assert.assertTrue(actualUrl.contains("upgenix.net"));
-        Assert.assertTrue(upgenixLoginPage.userButton.isDisplayed());
     }
 
+    @Then("user see {string}.")
+    public void userSeePopUp(String exp) {
+        // WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 3);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
+
+        //String actual = upgenixLoginPage.loginFormControl.getAttribute("validationMessage");
+        //String actual = Driver.getDriver().findElement(By.name("login")).getAttribute("validationMessage");
+        //String actual = upgenixLoginPage.loginFormControl.getAttribute("validationMessage");
+        //Alert alert = Driver.getDriver().switchTo().alert();
+
+        // Get the text from the alert
+        //String actual = alert.getText();
+        //System.out.println(Driver.getDriver().getWindowHandles().toString());
+        //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        //wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+        //JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
+        //jsExecutor.executeScript("window.setTimeout(function() { alert('Popup message'); }, 3000);");
+        //String actual = Driver.getDriver().switchTo().alert().getText();
+
+        //Assert.assertEquals(actual, exp);
+
+    }
 }

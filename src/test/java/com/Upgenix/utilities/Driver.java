@@ -95,7 +95,7 @@ public class Driver {
                     browserOptions.setCapability("browserVersion", "latest");
                     Map<String, Object> sauceOptions = new HashMap<>();
                     sauceOptions.put("build", "<your build id>");
-                    sauceOptions.put("name", "<your test name>");
+                    sauceOptions.put("name", "<your LogOutPage name>");
                     browserOptions.setCapability("sauce:options", sauceOptions);
 
                     URL url = null;

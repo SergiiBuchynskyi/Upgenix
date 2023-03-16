@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
 
-    public void UpgenixLoginPage() {
+    public void BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -18,7 +18,7 @@ public class BasePage {
     @FindBy(xpath = "//*[@id='password']")
     public WebElement passwordFormControl;
 
-    @FindBy(xpath = "//button[@type=\"submit\"]")
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
     public WebElement login;
 
     @FindBy(xpath = "//p")
@@ -26,6 +26,23 @@ public class BasePage {
 
     @FindBy(xpath = "//span[@class='oe_topbar_name']")
     public WebElement userButton;
+
+
+
+    public static WebElement clickButton(String button) {
+        BasePage basePage = new UpgenixLoginPage();
+
+        switch (button) {
+            case "login":
+                return basePage.login;
+            case "userButton":
+                return basePage.userButton;
+            default:
+                System.out.println("Button doesn't exist");
+                return null;
+        }
+
+    }
 
 
 }

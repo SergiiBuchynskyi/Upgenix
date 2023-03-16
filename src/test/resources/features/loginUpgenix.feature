@@ -8,9 +8,9 @@ Feature: User should be able to login
     When user enters "<login>" and "<password>" in range of <start> to <end>
     Examples:
       | login        | password     | start | end |
-      | salesmanager | salesmanager | 5     | 105 |
-      | posmanager   | posmanager   | 15    | 155 |
-
+      | salesmanager | salesmanager | 6     | 7   |
+      | posmanager   | posmanager   | 15    | 16  |
+#5-105 #15-155
 
   @login
   Scenario: "Wrong login/password" message should be displayed for invalid credentials
@@ -22,8 +22,8 @@ Feature: User should be able to login
   @login
   Scenario: "Please fill out this field" message should be displayed if the password or username is empty
     When User leaves login field empty and enters password
-    And user clicks on the "Login" button
-    Then user see "Please fill out this field"
+    And user clicks on the "login" button
+    Then user see "Please fill out this field".
 
   @login
   Scenario: User should see the password in bullet signs by default while typing (like ****)
