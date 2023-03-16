@@ -5,7 +5,6 @@ Feature: User should be able to logout
 
   @logout
   Scenario: User can log out and ends up in login page
-    When user clicks userName and log out
     Then user log out
     Then user is redirected to home page
 

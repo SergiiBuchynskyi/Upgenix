@@ -9,12 +9,14 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.owasp.html.Handler;
 
 import java.security.Key;
 
 public class UpgenixLogOut {
     UpgenixLoginPage upgenixLoginPage = new UpgenixLoginPage();
+
     @Given("user is already logged in")
     public void userIsAlreadyLoggedIn() {
         Driver.getDriver().get("https://qa.upgenix.net/");
@@ -22,7 +24,7 @@ public class UpgenixLogOut {
         upgenixLoginPage.passwordFormControl.sendKeys("salesmanager" + Keys.ENTER);
     }
 
-    @When("user clicks userName and log out")
+    @When("user log out")
     public void userClicksUserNameAndLogOut() {
         System.out.println(upgenixLoginPage.logOutStep2.toString());
         upgenixLoginPage.logOutStep1.click();
@@ -31,12 +33,6 @@ public class UpgenixLogOut {
 
     }
 
-    @Then("user log out")
-    public void userLogOut() {
-        upgenixLoginPage.logOutStep1.click();
-        upgenixLoginPage.logOutStep2.click();
-
-    }
 
     @Then("user is redirected to home page")
     public void
@@ -55,13 +51,17 @@ public class UpgenixLogOut {
         Driver.getDriver().navigate().back();
         //check if
         boolean size = Driver.getDriver().findElements(By.xpath("//span[@class='oe_topbar_name']")).size() != 0;
-        Assert.assertTrue(size);
+        Assert.assertFalse(size);
     }
 
     @When("User closes all tabs")
     public void userClosesAllTabs() {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.keyDown(Keys.CONTROL).sendKeys("t").keyUp(Keys.CONTROL).perform();
         for (String windowHandle : Driver.getDriver().getWindowHandles()) {
-            Driver.getDriver().switchTo().window(windowHandle).close();
+            if (!Driver.getDriver().getCurrentUrl().equals("")) {
+                Driver.getDriver().switchTo().window(windowHandle).close();
+            }
         }
     }
 
