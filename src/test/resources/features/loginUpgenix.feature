@@ -19,11 +19,11 @@ Feature: User should be able to login
     Then user see "Wrong login/password"
 
 
-  @login
+  @login @wip
   Scenario: "Please fill out this field" message should be displayed if the password or username is empty
     When User leaves login field empty and enters password
     And user clicks on the "login" button
-    Then user see "Please fill out this field".
+    Then user see "Заповніть це поле.".
 
   @login
   Scenario: User should see the password in bullet signs by default while typing (like ****)

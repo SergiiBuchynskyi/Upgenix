@@ -105,25 +105,11 @@ public class UpgenixLogin {
 
     @Then("user see {string}.")
     public void userSeePopUp(String exp) {
-        // WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 3);
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
 
-        //String actual = upgenixLoginPage.loginFormControl.getAttribute("validationMessage");
-        //String actual = Driver.getDriver().findElement(By.name("login")).getAttribute("validationMessage");
-        //String actual = upgenixLoginPage.loginFormControl.getAttribute("validationMessage");
-        //Alert alert = Driver.getDriver().switchTo().alert();
+        upgenixLoginPage.login.click();
+        String actual = Driver.getDriver().findElement(By.name("login")).getAttribute("validationMessage");
 
-        // Get the text from the alert
-        //String actual = alert.getText();
-        //System.out.println(Driver.getDriver().getWindowHandles().toString());
-        //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
-        //wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
-        //JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
-        //jsExecutor.executeScript("window.setTimeout(function() { alert('Popup message'); }, 3000);");
-        //String actual = Driver.getDriver().switchTo().alert().getText();
-
-        //Assert.assertEquals(actual, exp);
+        Assert.assertEquals(actual, exp);
 
     }
 }

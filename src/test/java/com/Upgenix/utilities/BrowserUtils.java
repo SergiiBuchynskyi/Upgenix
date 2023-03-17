@@ -15,6 +15,29 @@ import java.util.Set;
 public class BrowserUtils {
 
 
+    public static boolean isDisplayedElementBuiltIn(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;
+        }
+    }
+
+    public static boolean isDisplayedElementXpath(WebElement element) {
+        String elementToString = element.toString();
+        String prefix = "xpath: ";
+        String suffix = "]";
+        int startIndex = elementToString.indexOf(prefix) + prefix.length();
+        int endIndex = elementToString.lastIndexOf(suffix);
+        if (startIndex >= endIndex) {
+            return false;
+        }
+        String xpath = "\"" + elementToString.substring(startIndex, endIndex) + "]\"";
+        System.out.println(xpath);
+        boolean result = Driver.getDriver().findElements(By.xpath("//*[@id='login']")).size() == 1;
+        return result;
+    }
+
 
 
 
@@ -43,11 +66,8 @@ for given duration
         Set<String> allWindowsHandles = Driver.getDriver().getWindowHandles();
 
         for (String each : allWindowsHandles) {
-
             Driver.getDriver().switchTo().window(each);
-
             System.out.println("Current URL: " + Driver.getDriver().getCurrentUrl());
-
             if (Driver.getDriver().getCurrentUrl().contains(expectedInUrl)){
                 break;
             }

@@ -15,7 +15,7 @@ Feature: User should be able to logout
     Then user press step back button and user can not go to the home page again
 
 
-  @logout
+  @logout @wip
   Scenario: The user must be logged out if the user closes all open tab
     When User closes all tabs
     And user navigates to home page again

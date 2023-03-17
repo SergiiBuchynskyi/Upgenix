@@ -1,6 +1,7 @@
 package com.Upgenix.step_definitions;
 
 import com.Upgenix.pages.UpgenixLoginPage;
+import com.Upgenix.utilities.BrowserUtils;
 import com.Upgenix.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -49,9 +50,9 @@ public class UpgenixLogOut {
     @Then("user press step back button and user can not go to the home page again")
     public void userPressStepBackButtonAndUserCanNotGoToTheHomePageAgain() {
         Driver.getDriver().navigate().back();
-        //check if
-        boolean size = Driver.getDriver().findElements(By.xpath("//span[@class='oe_topbar_name']")).size() != 0;
-        Assert.assertFalse(size);
+        //check if Element present
+        //boolean size = Driver.getDriver().findElements(By.xpath("//span[@class='oe_topbar_name']")).size() != 0;
+        Assert.assertFalse(BrowserUtils.isDisplayedElementXpath(upgenixLoginPage.logOutStep1));
     }
 
     @When("User closes all tabs")
@@ -59,9 +60,11 @@ public class UpgenixLogOut {
         Actions actions = new Actions(Driver.getDriver());
         actions.keyDown(Keys.CONTROL).sendKeys("t").keyUp(Keys.CONTROL).perform();
         for (String windowHandle : Driver.getDriver().getWindowHandles()) {
-            if (!Driver.getDriver().getCurrentUrl().equals("")) {
+            String pageTitle = Driver.getDriver().getTitle();
+            if (pageTitle == null || pageTitle.trim().isEmpty()) {
                 Driver.getDriver().switchTo().window(windowHandle).close();
             }
+
         }
     }
 
@@ -73,8 +76,8 @@ public class UpgenixLogOut {
 
     @Then("user has to be logged out")
     public void userHasToBeLoggedOut() {
-        boolean size = Driver.getDriver().findElements(By.xpath("//span[@class='oe_topbar_name']")).size() != 0;
-        Assert.assertFalse(size);
+        System.out.println(BrowserUtils.isDisplayedElementXpath(upgenixLoginPage.logOutStep1)? "True": "False");
+        Assert.assertFalse(BrowserUtils.isDisplayedElementXpath(upgenixLoginPage.logOutStep1));
     }
 
 
