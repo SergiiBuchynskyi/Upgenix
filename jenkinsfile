@@ -1,6 +1,6 @@
 node {
     stage('Clone code') {
-        git 'https://github.com/SergiiBuchynskyi/cydeo-cucumber-junit-EU10'
+        git 'https://github.com/SergiiBuchynskyi/Upgenix'
     }
 
     stage('Run tests'){
