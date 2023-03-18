@@ -69,6 +69,7 @@ public class Driver {
                     break;
 
 
+
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driverPool.set(new FirefoxDriver());
