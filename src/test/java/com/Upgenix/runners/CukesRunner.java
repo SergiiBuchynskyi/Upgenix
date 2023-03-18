@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/Upgenix/step_definitions",
         dryRun = false,
-        tags = "",
+        tags = "@logout",
         publish = false
 
 )
