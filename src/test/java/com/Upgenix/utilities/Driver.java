@@ -74,6 +74,7 @@ public class Driver {
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
+
                 case "remote-chrome":
                     // assign your grid server address
                     String gridAdress = "44.192.10.123"; // put your own Linux grid IP here
