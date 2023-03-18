@@ -82,7 +82,7 @@ public class Driver {
                         URL url = new URL("http://" + gridAdress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("chrome");
-                        //desiredCapabilities.setCapability("chromeOptions", new String[]{"--headless"});//!!!!!!!!!
+                        desiredCapabilities.setCapability("chromeOptions", new String[]{"--headless"});//!!!!!!!!!
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                         driverPool.get().manage().window().maximize();
                         driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
