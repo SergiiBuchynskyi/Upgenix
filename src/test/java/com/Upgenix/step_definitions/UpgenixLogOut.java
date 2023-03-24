@@ -29,7 +29,6 @@ public class UpgenixLogOut {
     public void userClicksUserNameAndLogOut() {
         System.out.println(upgenixLoginPage.logOutStep2.toString());
         upgenixLoginPage.logOutStep1.click();
-
         upgenixLoginPage.logOutStep2.click();
 
 
