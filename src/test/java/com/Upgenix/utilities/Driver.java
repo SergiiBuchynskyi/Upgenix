@@ -77,12 +77,11 @@ public class Driver {
 
                 case "remote-chrome":
                     // assign your grid server address
-                    String gridAdress = "44.192.10.123"; // put your own Linux grid IP here
+                    String gridAdress = "34.200.227.154"; // put your own Linux grid IP here
                     try {
                         URL url = new URL("http://" + gridAdress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("chrome");
-                        //desiredCapabilities.setCapability("chromeOptions", new String[]{"--headless"});///
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                         driverPool.get().manage().window().maximize();
                         driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -90,7 +89,8 @@ public class Driver {
                         e.printStackTrace();
                     }
                     break;
-                case "saucelab-chrome":
+
+                    case "saucelab-chrome":
                     try {
                         URL url = new URL("https://oauth-sdetoscar-844c8:66e7117f-390e-4556-8105-07af96a01f7a@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
