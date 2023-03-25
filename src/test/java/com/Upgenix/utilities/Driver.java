@@ -75,13 +75,13 @@ public class Driver {
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
-                case "remote-chrome":
+                case "remote-firefox":
                     // assign your grid server address
                     String gridAdress = "34.200.227.154"; // put your own Linux grid IP here
                     try {
                         URL url = new URL("http://" + gridAdress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName("chrome");
+                        desiredCapabilities.setBrowserName("firefox");
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                         driverPool.get().manage().window().maximize();
                         driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
